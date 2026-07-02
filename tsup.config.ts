@@ -23,4 +23,14 @@ export default defineConfig([
     target: "node18",
     platform: "node",
   },
+  // Standard lifecycle events: browser + server helpers, tree-shakeable subpath.
+  {
+    entry: { events: "src/events/index.ts" },
+    format: ["esm", "cjs"],
+    dts: true,
+    minify: true,
+    sourcemap: true,
+    clean: false,
+    target: "es2020",
+  },
 ]);

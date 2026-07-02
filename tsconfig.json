@@ -5,6 +5,7 @@
     "moduleResolution": "bundler",
     "ignoreDeprecations": "6.0",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["node"],
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "declaration": true,
@@ -15,5 +16,6 @@
     "verbatimModuleSyntax": true,
     "noEmit": true
   },
-  "include": ["src", "tsup.config.ts"]
+  "include": ["src", "tsup.config.ts"],
+  "exclude": ["src/**/*.test.ts"]
 }

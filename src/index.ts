@@ -1,35 +1,58 @@
-import { AnalyseClient } from "./client";
 import type { AnalyseConfig } from "./types";
 
 export type { AnalyseConfig, AnalyseEvent } from "./types";
 export { AnalyseClient } from "./client";
+export type { ContentAttribution } from "./content-touchpoints";
+export { getContentAttribution } from "./content-touchpoints";
+export { init, track, identify, page, reset } from "./globals";
 
-const client = new AnalyseClient();
+export {
+  contentViewed,
+  signedUp,
+  checkoutStarted,
+  checkoutCancelled,
+  checkoutFinished,
+  trialStarted,
+  trialEnded,
+  subscriptionCancelled,
+} from "./events/browser";
 
-/** Initializes the global Analyse client. See {@link AnalyseConfig}. */
-export function init(config: AnalyseConfig): void {
-  client.init(config);
-}
+export type {
+  BillingInterval,
+  CheckoutBaseProps,
+  CheckoutCancelledProps,
+  CheckoutFinishedProps,
+  CheckoutStartedProps,
+  CheckoutCancelReason,
+  ContentAttributionProps,
+  ContentType,
+  ContentViewedProps,
+  OneTimeCheckoutProps,
+  PaymentType,
+  SignupCompletedProps,
+  SignupMethod,
+  SubscriptionCancelledProps,
+  SubscriptionCancelReason,
+  SubscriptionCheckoutProps,
+  TrialEndedProps,
+  TrialEndReason,
+  TrialStartedProps,
+} from "./events/types";
 
-/** Records a custom event with optional properties. */
-export function track(eventName: string, properties?: Record<string, unknown>): void {
-  client.track(eventName, properties);
-}
+export type { StandardEventName } from "./events/names";
+export { STANDARD_EVENT_NAMES, STANDARD_EVENT_NAME_LIST } from "./events/names";
 
-/** Associates the current device with a known user id. */
-export function identify(userId: string, traits?: Record<string, unknown>): void {
-  client.identify(userId, traits);
-}
-
-/** Sends a `pageview` for the current URL. */
-export function page(): void {
-  client.page();
-}
-
-/** Clears identity/session state and flushes pending events. */
-export function reset(): void {
-  client.reset();
-}
+import { init, track, identify, page, reset } from "./globals";
+import {
+  contentViewed,
+  signedUp,
+  checkoutStarted,
+  checkoutCancelled,
+  checkoutFinished,
+  trialStarted,
+  trialEnded,
+  subscriptionCancelled,
+} from "./events/browser";
 
 /**
  * Auto-initializes from the loading `<script>` tag's data attributes, enabling a
@@ -64,4 +87,18 @@ function autoInit(): void {
 
 autoInit();
 
-export default { init, track, identify, page, reset };
+export default {
+  init,
+  track,
+  identify,
+  page,
+  reset,
+  contentViewed,
+  signedUp,
+  checkoutStarted,
+  checkoutCancelled,
+  checkoutFinished,
+  trialStarted,
+  trialEnded,
+  subscriptionCancelled,
+};

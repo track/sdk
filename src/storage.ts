@@ -1,3 +1,5 @@
+import { clearContentTouchpoints } from "./content-touchpoints";
+
 const ANON_KEY = "analyse_anon_id";
 const PERSON_KEY = "analyse_person_id";
 const SESSION_ID_KEY = "analyse_session_id";
@@ -104,4 +106,5 @@ export function resetIdentity(): void {
   removeLocal(PERSON_KEY);
   removeLocal(SESSION_ID_KEY);
   removeLocal(SESSION_TS_KEY);
+  clearContentTouchpoints();
 }

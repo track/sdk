@@ -1,5 +1,8 @@
 {
-  "name": "@track/sdk",
+  "name": "@analyse.net/sdk",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.1.0",
   "description": "Analyse web analytics browser SDK",
   "license": "MIT",
@@ -19,6 +22,11 @@
       "types": "./dist/server.d.ts",
       "import": "./dist/server.js",
       "require": "./dist/server.cjs"
+    },
+    "./events": {
+      "types": "./dist/events.d.ts",
+      "import": "./dist/events.js",
+      "require": "./dist/events.cjs"
     }
   },
   "files": ["dist", "README.md", "LICENSE"],
@@ -26,11 +34,16 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:events": "tsx src/events/normalize.test.ts",
+    "test:content": "tsx src/content-touchpoints.test.ts",
+    "test": "pnpm test:events && pnpm test:content"
   },
   "keywords": ["analytics", "tracking", "sdk", "web-analytics", "analyse"],
   "devDependencies": {
+    "@types/node": "^25.9.4",
     "tsup": "^8.5.0",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.3"
   }
 }
