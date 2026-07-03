@@ -1,4 +1,20 @@
 /**
+ * Traits accepted by `identify()`. Reserved `$`-prefixed keys populate the
+ * user's profile in the dashboard (name, email, avatar); any other keys are
+ * stored verbatim as custom properties.
+ */
+export type IdentifyTraits = {
+  /** Display name shown in the dashboard Users page. */
+  $name?: string;
+  /** Email shown on the user profile. */
+  $email?: string;
+  /** Avatar image URL shown on the user profile. */
+  $avatar?: string;
+  /** Any custom properties to store on the user. */
+  [key: string]: unknown;
+};
+
+/**
  * A single event as sent to the Analyse ingest endpoint. The site is identified
  * by the envelope `publicKey`, not per event; ingest stamps the resolved
  * `site_id`. Device/browser/OS are intentionally omitted here and derived

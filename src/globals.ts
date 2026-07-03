@@ -1,5 +1,5 @@
 import { AnalyseClient } from "./client";
-import type { AnalyseConfig } from "./types";
+import type { AnalyseConfig, IdentifyTraits } from "./types";
 
 /** Process-wide browser client singleton shared by the public API and event helpers. */
 export const client = new AnalyseClient();
@@ -15,7 +15,7 @@ export function track(eventName: string, properties?: Record<string, unknown>): 
 }
 
 /** Associates the current device with a known user id. */
-export function identify(userId: string, traits?: Record<string, unknown>): void {
+export function identify(userId: string, traits?: IdentifyTraits): void {
   client.identify(userId, traits);
 }
 

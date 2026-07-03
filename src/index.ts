@@ -1,6 +1,6 @@
 import type { AnalyseConfig } from "./types";
 
-export type { AnalyseConfig, AnalyseEvent } from "./types";
+export type { AnalyseConfig, AnalyseEvent, IdentifyTraits } from "./types";
 export { AnalyseClient } from "./client";
 export type { ContentAttribution } from "./content-touchpoints";
 export { getContentAttribution } from "./content-touchpoints";

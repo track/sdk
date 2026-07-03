@@ -6,7 +6,7 @@ import {
   resetIdentity,
   setPersonId,
 } from "./storage";
-import type { AnalyseConfig, AnalyseEvent } from "./types";
+import type { AnalyseConfig, AnalyseEvent, IdentifyTraits } from "./types";
 
 const DEFAULT_HOST = "https://pulse.analyse.net";
 const DEFAULT_FLUSH_INTERVAL_MS = 5000;
@@ -79,7 +79,7 @@ export class AnalyseClient {
    * stitching happens server-side; a `$identify` event is emitted so the join
    * of anonymous history to the person is recorded.
    */
-  identify(userId: string, traits?: Record<string, unknown>): void {
+  identify(userId: string, traits?: IdentifyTraits): void {
     if (!this.config || !userId) {
       return;
     }
