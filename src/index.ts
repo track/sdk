@@ -2,6 +2,8 @@ import type { AnalyseConfig } from "./types";
 
 export type { AnalyseConfig, AnalyseEvent, IdentifyTraits } from "./types";
 export { AnalyseClient } from "./client";
+export type { CampaignAttribution } from "./campaign-touchpoints";
+export { getCampaignAttribution } from "./campaign-touchpoints";
 export type { ContentAttribution } from "./content-touchpoints";
 export { getContentAttribution } from "./content-touchpoints";
 export { init, track, identify, page, reset } from "./globals";
@@ -19,6 +21,7 @@ export {
 
 export type {
   BillingInterval,
+  CampaignAttributionProps,
   CheckoutBaseProps,
   CheckoutCancelledProps,
   CheckoutFinishedProps,

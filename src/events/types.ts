@@ -1,6 +1,24 @@
 /** Canonical content types for `content_viewed` attribution. */
 export type ContentType = "blog_post" | "article" | "page" | "doc";
 
+/** First- and last-touch campaign (UTM) fields attached to conversion events. */
+export type CampaignAttributionProps = {
+  first_utm_source?: string;
+  first_utm_medium?: string;
+  first_utm_campaign?: string;
+  first_utm_term?: string;
+  first_utm_content?: string;
+  first_referrer_domain?: string;
+  first_touched_at?: string;
+  last_utm_source?: string;
+  last_utm_medium?: string;
+  last_utm_campaign?: string;
+  last_utm_term?: string;
+  last_utm_content?: string;
+  last_referrer_domain?: string;
+  last_touched_at?: string;
+};
+
 /** First- and last-touch content metadata attached to conversion events. */
 export type ContentAttributionProps = {
   first_content_id?: string;
@@ -79,7 +97,8 @@ export type SubscriptionCheckoutProps = CheckoutSharedFields & {
 export type CheckoutBaseProps = OneTimeCheckoutProps | SubscriptionCheckoutProps;
 
 /** Properties for {@link signedUp} / `signup_completed`. */
-export type SignupCompletedProps = ContentAttributionProps & {
+export type SignupCompletedProps = ContentAttributionProps &
+  CampaignAttributionProps & {
   method?: SignupMethod;
   plan?: string;
   trial_days?: number;

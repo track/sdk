@@ -37,7 +37,8 @@
     "typecheck": "tsc --noEmit",
     "test:events": "tsx src/events/normalize.test.ts",
     "test:content": "tsx src/content-touchpoints.test.ts",
-    "test": "pnpm test:events && pnpm test:content"
+    "test:campaign": "tsx src/campaign-touchpoints.test.ts",
+    "test": "pnpm test:events && pnpm test:content && pnpm test:campaign"
   },
   "keywords": ["analytics", "tracking", "sdk", "web-analytics", "analyse"],
   "devDependencies": {

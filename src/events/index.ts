@@ -3,6 +3,7 @@ export type { StandardEventName } from "./names";
 
 export type {
   BillingInterval,
+  CampaignAttributionProps,
   CheckoutBaseProps,
   CheckoutCancelledProps,
   CheckoutCancelReason,

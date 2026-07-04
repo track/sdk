@@ -1,3 +1,4 @@
+import { getCampaignAttribution } from "../campaign-touchpoints";
 import { getContentAttribution, recordContentTouchpoint } from "../content-touchpoints";
 import { track } from "../globals";
 import { STANDARD_EVENT_NAMES } from "./names";
@@ -32,7 +33,7 @@ export function contentViewed(props: ContentViewedProps): void {
 
 /** Records `signup_completed` after a user successfully creates an account. */
 export function signedUp(props: SignupCompletedProps = {}): void {
-  const attribution = getContentAttribution();
+  const attribution = { ...getContentAttribution(), ...getCampaignAttribution() };
 
   track(
     STANDARD_EVENT_NAMES.signupCompleted,

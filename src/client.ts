@@ -1,3 +1,4 @@
+import { getCampaignAttribution, recordCampaignTouch } from "./campaign-touchpoints";
 import { collectPageContext } from "./env";
 import {
   getAnonId,
@@ -77,7 +78,9 @@ export class AnalyseClient {
   /**
    * Associates the current anonymous device with a known user id. Identity
    * stitching happens server-side; a `$identify` event is emitted so the join
-   * of anonymous history to the person is recorded.
+   * of anonymous history to the person is recorded. First/last-touch campaign
+   * attribution is merged into the traits (explicit traits win) so the user's
+   * profile records which campaign brought them in.
    */
   identify(userId: string, traits?: IdentifyTraits): void {
     if (!this.config || !userId) {
@@ -85,7 +88,7 @@ export class AnalyseClient {
     }
 
     setPersonId(userId);
-    this.enqueue(this.buildEvent("$identify", traits));
+    this.enqueue(this.buildEvent("$identify", { ...getCampaignAttribution(), ...traits }));
   }
 
   /**
@@ -145,13 +148,16 @@ export class AnalyseClient {
     eventName: string,
     properties?: Record<string, unknown>,
   ): AnalyseEvent {
+    const context = collectPageContext();
+    recordCampaignTouch(context);
+
     return {
       event_name: eventName,
       anonymous_id: getAnonId(),
       person_id: getPersonId(),
       session_id: getSessionId(),
       timestamp: new Date().toISOString(),
-      ...collectPageContext(),
+      ...context,
       properties: properties ?? {},
     };
   }

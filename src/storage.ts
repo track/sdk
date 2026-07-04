@@ -1,3 +1,4 @@
+import { clearCampaignTouchpoints } from "./campaign-touchpoints";
 import { clearContentTouchpoints } from "./content-touchpoints";
 
 const ANON_KEY = "analyse_anon_id";
@@ -107,4 +108,5 @@ export function resetIdentity(): void {
   removeLocal(SESSION_ID_KEY);
   removeLocal(SESSION_TS_KEY);
   clearContentTouchpoints();
+  clearCampaignTouchpoints();
 }
