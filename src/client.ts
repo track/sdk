@@ -126,7 +126,12 @@ export class AnalyseClient {
     const url = `${this.config.host}/v1/batch`;
 
     if (useBeacon && typeof navigator !== "undefined" && navigator.sendBeacon) {
-      const ok = navigator.sendBeacon(url, new Blob([body], { type: "application/json" }));
+      // Send as a plain string (text/plain) rather than an application/json
+      // Blob: sendBeacon always runs in credentials mode "include", and a
+      // non-simple content type triggers a CORS preflight that fails because
+      // the ingest endpoint intentionally never allows credentials. text/plain
+      // is a simple request, so no preflight is needed and the beacon lands.
+      const ok = navigator.sendBeacon(url, body);
       if (ok) {
         return;
       }
