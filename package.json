@@ -5,6 +5,11 @@
   },
   "version": "1.0.0",
   "description": "Analyse web analytics browser SDK",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/track/web.analyse.net.git",
+    "directory": "packages/tracker"
+  },
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
